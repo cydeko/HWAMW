@@ -22,18 +22,18 @@ export default function CompleteStep({ participant }: Props) {
 
   return (
     <StepWrapper>
-      <p className="text-stone-400 text-sm italic leading-relaxed">
+      <p className="text-stone-400 text-sm leading-relaxed">
         &ldquo;There,&rdquo; the gatekeeper says, stepping back to admire his work. Your
         name is carved into the stone, in the place you chose.
       </p>
-      <p className="text-stone-300 leading-relaxed text-sm">
+      <p className="text-stone-200 text-sm leading-relaxed">
         The sky is beginning to lighten at the edges. The house behind you is
         quiet now—most of the windows dark, a few still glowing. You have the
         feeling, not unpleasant, of someone who has stayed up much later than
         they intended and gotten more than they bargained for.
       </p>
       {name && (
-        <p className="text-stone-400 text-sm italic">
+        <p className="text-stone-400 text-sm">
           &ldquo;Safe travels, {name}.&rdquo;
         </p>
       )}

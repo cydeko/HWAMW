@@ -44,12 +44,12 @@ export default function QualitiesStep({ participant, onAdvance }: Props) {
 
   return (
     <StepWrapper>
-      <p className="text-stone-300 leading-relaxed">
+      <p className="text-stone-200 text-sm leading-relaxed">
         The trail turns, growing as convoluted as your thoughts. With a sigh,
         you make your way back up to the hardened dirt path. You&apos;re allowed to
         be here, probably.
       </p>
-      <p className="text-stone-300 leading-relaxed">
+      <p className="text-stone-200 text-sm leading-relaxed">
         Sure, there was that sign at the head of the path that said &ldquo;No
         Trespassers,&rdquo; but that could hardly be referring to you. You&apos;re many
         things…
@@ -62,8 +62,8 @@ export default function QualitiesStep({ participant, onAdvance }: Props) {
             onClick={() => toggle(quality)}
             className={`w-full text-left px-4 py-3 rounded border text-sm transition-colors ${
               selected.includes(quality)
-                ? 'border-stone-500 bg-stone-800 text-stone-100'
-                : 'border-stone-800 text-stone-400 hover:border-stone-600 hover:text-stone-300'
+                ? 'border-stone-500 bg-stone-800 text-stone-200'
+                : 'border-stone-800 text-stone-200 hover:border-stone-600'
             }`}
           >
             {quality}
@@ -73,7 +73,7 @@ export default function QualitiesStep({ participant, onAdvance }: Props) {
 
       <p className="text-stone-600 text-xs">Choose 1–3.</p>
 
-      <p className="text-stone-500 text-sm italic">
+      <p className="text-stone-200 text-sm leading-relaxed">
         …but a trespasser isn&apos;t one of them.
       </p>
 

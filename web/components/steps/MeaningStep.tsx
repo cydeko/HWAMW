@@ -46,7 +46,7 @@ export default function MeaningStep({ participant, timing, onAdvance }: Props) {
 
   return (
     <StepWrapper>
-      <p className="text-stone-400 text-sm italic leading-relaxed">
+      <p className="text-stone-400 text-sm leading-relaxed">
         {timing === 't1' ? (
           <>
             The gatekeeper nods, like it&apos;s what he expected. &ldquo;And all this
@@ -89,7 +89,7 @@ export default function MeaningStep({ participant, timing, onAdvance }: Props) {
 
       {timing === 't1' && (
         <div className="space-y-2">
-          <p className="text-stone-400 text-sm italic">
+          <p className="text-stone-400 text-sm">
             &ldquo;And what name should I carve there?&rdquo;
           </p>
           <input
@@ -103,7 +103,7 @@ export default function MeaningStep({ participant, timing, onAdvance }: Props) {
       )}
 
       {timing === 't2' && existingName && (
-        <p className="text-stone-500 text-sm text-center italic">
+        <p className="text-stone-500 text-sm text-center">
           Pleasure to meet you again, {existingName}.
         </p>
       )}

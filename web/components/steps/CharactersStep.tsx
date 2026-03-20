@@ -1,14 +1,21 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { updateParticipantStatus, updateSession, getSession, nextStep } from '@/lib/session'
 import { Participant, Character } from '@/types/database'
 import StepWrapper from '@/components/StepWrapper'
+import LoadingDots from '@/components/LoadingDots'
 
 interface Props {
   participant: Participant
   pid: string
   onAdvance: () => void
+}
+
+function naturalList(names: string[]): string {
+  if (names.length === 0) return ''
+  if (names.length === 1) return names[0]
+  return names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1]
 }
 
 export default function CharactersStep({ participant, onAdvance }: Props) {
@@ -19,8 +26,11 @@ export default function CharactersStep({ participant, onAdvance }: Props) {
   const [charDescription, setCharDescription] = useState('')
   const [generating, setGenerating] = useState(true)
   const [submitting, setSubmitting] = useState(false)
+  const hasGenerated = useRef(false)
 
   useEffect(() => {
+    if (hasGenerated.current) return
+    hasGenerated.current = true
     const generate = async () => {
       const session = await getSession(participant.id)
       if (!session?.t1_narrative) {
@@ -39,7 +49,7 @@ export default function CharactersStep({ participant, onAdvance }: Props) {
           setCharacters(data.characters?.map((name: string) => ({ name, description: '' })) || [])
         }
       } catch {
-        // Ollama unavailable — proceed with empty summary, user can fill manually
+        // Ollama unavailable — proceed with empty summary
       } finally {
         setGenerating(false)
       }
@@ -72,8 +82,9 @@ export default function CharactersStep({ participant, onAdvance }: Props) {
   if (generating) {
     return (
       <StepWrapper>
-        <p className="text-stone-500 text-sm italic">
-          &ldquo;Hmm, very interesting,&rdquo; he says, reading carefully…
+        <p className="text-stone-400 text-sm leading-relaxed">
+          He takes out a small piece of parchment and begins to scribble.{' '}
+          <LoadingDots />
         </p>
       </StepWrapper>
     )
@@ -82,11 +93,11 @@ export default function CharactersStep({ participant, onAdvance }: Props) {
   if (!summaryConfirmed) {
     return (
       <StepWrapper>
-        <p className="text-stone-400 text-sm italic leading-relaxed">
-          &ldquo;Now let me see if I&apos;ve got this straight.&rdquo;
+        <p className="text-stone-400 text-sm leading-relaxed">
+          &ldquo;Now let me see if I&apos;ve got this straight.&rdquo; He hands you the parchment.
         </p>
-        <p className="text-stone-300 leading-relaxed text-sm">{plotSummary}</p>
-        <p className="text-stone-400 text-sm italic">&ldquo;Is that right?&rdquo;</p>
+        <p className="text-stone-200 text-sm leading-relaxed">{plotSummary}</p>
+        <p className="text-stone-400 text-sm">&ldquo;Is that right?&rdquo;</p>
 
         <div className="flex gap-3">
           <button
@@ -108,7 +119,6 @@ export default function CharactersStep({ participant, onAdvance }: Props) {
 
   const currentChar = characters[currentCharIdx]
 
-  // No characters identified — skip straight to next step
   if (!currentChar) {
     const advance = async () => {
       await updateSession(participant.id, { plot_summary: plotSummary, characters: [] })
@@ -118,24 +128,25 @@ export default function CharactersStep({ participant, onAdvance }: Props) {
     advance()
     return (
       <StepWrapper>
-        <p className="text-stone-500 text-sm italic">One moment…</p>
+        <p className="text-stone-500 text-sm"><LoadingDots /></p>
       </StepWrapper>
     )
   }
 
+  const charListLabel = naturalList(characters.map((c) => c.name))
+
   return (
     <StepWrapper>
-      <p className="text-stone-400 text-sm italic leading-relaxed">
-        &ldquo;I see. And these other folks, your supporting cast—that&apos;s mainly{' '}
-        {characters.map((c) => c.name).join(', ')}. Now, help me understand.
-        Who&apos;s this <span className="text-stone-200">{currentChar.name}</span>?
-        What are they like?&rdquo;
+      <p className="text-stone-400 text-sm leading-relaxed">
+        &ldquo;I see. And the others in your story — that&apos;s mainly {charListLabel}.
+        Help me understand: who is <span className="text-stone-200">{currentChar.name}</span>
+        {currentCharIdx === 0 ? ', exactly' : ''}?&rdquo;
       </p>
 
       <textarea
         value={charDescription}
         onChange={(e) => setCharDescription(e.target.value)}
-        placeholder={`Describe ${currentChar.name} briefly…`}
+        placeholder={`Say a little about ${currentChar.name}…`}
         rows={3}
         className="w-full bg-stone-900 border border-stone-700 rounded px-4 py-3 text-stone-200 text-sm placeholder-stone-600 focus:outline-none focus:border-stone-500 resize-none leading-relaxed"
       />

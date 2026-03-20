@@ -44,11 +44,11 @@ export default function TroublesStep({ participant, onAdvance }: Props) {
 
   return (
     <StepWrapper>
-      <p className="text-stone-300 leading-relaxed">
+      <p className="text-stone-200 text-sm leading-relaxed">
         You&apos;re out walking late tonight. Much later than you usually stay up.
         It&apos;s been a long day. For that matter, a long year.
       </p>
-      <p className="text-stone-300 leading-relaxed">
+      <p className="text-stone-200 text-sm leading-relaxed">
         The feeling—it&apos;s tiredness, but not the kind that stillness can solve.
         Something inside of you feels stuck. You&apos;re exhausted, but you keep
         walking, like your feet moving on might make your thoughts follow after.
@@ -69,8 +69,8 @@ export default function TroublesStep({ participant, onAdvance }: Props) {
             onClick={() => toggle(trouble)}
             className={`w-full text-left px-4 py-3 rounded border text-sm transition-colors ${
               selected.includes(trouble)
-                ? 'border-stone-500 bg-stone-800 text-stone-100'
-                : 'border-stone-800 text-stone-400 hover:border-stone-600 hover:text-stone-300'
+                ? 'border-stone-500 bg-stone-800 text-stone-200'
+                : 'border-stone-800 text-stone-200 hover:border-stone-600'
             }`}
           >
             {trouble}

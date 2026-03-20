@@ -27,16 +27,16 @@ export default function PostNarrativeStep({ participant, onAdvance }: Props) {
 
   return (
     <StepWrapper>
-      <p className="text-stone-400 text-sm italic leading-relaxed">
+      <p className="text-stone-400 text-sm leading-relaxed">
         &ldquo;Ah!&rdquo; the gatekeeper says. &ldquo;You&apos;re just in time. I&apos;ve been thinking
         about your story all night, and just where to put it. Shall we?&rdquo;
       </p>
-      <p className="text-stone-300 leading-relaxed text-sm">
+      <p className="text-stone-200 text-sm leading-relaxed">
         He&apos;s ready to go, standing beside the gate with a rotary tool in hand.
         But on seeing your wide-eyed look, he pauses. &ldquo;Unless… the story&apos;s
         changed, hasn&apos;t it?&rdquo;
       </p>
-      <p className="text-stone-300 leading-relaxed text-sm">
+      <p className="text-stone-200 text-sm leading-relaxed">
         You nod. &ldquo;Thought so,&rdquo; he says. &ldquo;Things always look different in the
         morning around here. Go on, then.&rdquo;
       </p>

@@ -53,7 +53,7 @@ export default function MotivationsStep({ participant, onAdvance }: Props) {
   if (showElaboration) {
     return (
       <StepWrapper>
-        <p className="text-stone-400 text-sm italic leading-relaxed">
+        <p className="text-stone-400 text-sm leading-relaxed">
           &ldquo;Well, maybe it&apos;s not quite that simple… There&apos;s a bit more to it?&rdquo;
         </p>
         <textarea
@@ -76,11 +76,11 @@ export default function MotivationsStep({ participant, onAdvance }: Props) {
 
   return (
     <StepWrapper>
-      <p className="text-stone-400 text-sm italic leading-relaxed">
+      <p className="text-stone-400 text-sm leading-relaxed">
         &ldquo;And one more thing I don&apos;t quite get… What exactly are you hoping to
         get out of all this? What is it you want?&rdquo;
       </p>
-      <p className="text-stone-500 text-xs">
+      <p className="text-stone-400 text-sm leading-relaxed">
         A night of sleep and an end to this conversation, mostly. But you put on a
         polite smile and give a more genuine answer.
       </p>

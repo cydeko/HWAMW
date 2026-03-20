@@ -5,6 +5,7 @@ import { updateParticipantStatus, updateSession, getSession, nextStep } from '@/
 import { supabase } from '@/lib/supabase'
 import { Participant, LLMPassage } from '@/types/database'
 import StepWrapper from '@/components/StepWrapper'
+import LoadingDots from '@/components/LoadingDots'
 
 interface Props {
   participant: Participant
@@ -149,7 +150,7 @@ export default function InHouseStep({ participant, onAdvance }: Props) {
   if (phase === 'choosing') {
     return (
       <StepWrapper>
-        <p className="text-stone-300 leading-relaxed">
+        <p className="text-stone-200 text-sm leading-relaxed">
           Before you are {remainingWindows.length === participant.assigned_windows.length
             ? 'three window frames'
             : `${remainingWindows.length} remaining window${remainingWindows.length !== 1 ? 's' : ''}`}.
@@ -188,8 +189,8 @@ export default function InHouseStep({ participant, onAdvance }: Props) {
   return (
     <StepWrapper>
       {generating ? (
-        <p className="text-stone-500 text-sm italic text-center py-8">
-          The glass begins to cloud, then clear…
+        <p className="text-stone-400 text-sm text-center py-8">
+          <LoadingDots label="The glass begins to cloud, then clear" />
         </p>
       ) : currentPassage ? (
         <>

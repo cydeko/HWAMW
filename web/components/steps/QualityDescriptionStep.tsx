@@ -35,7 +35,7 @@ export default function QualityDescriptionStep({ participant, onAdvance }: Props
 
   return (
     <StepWrapper>
-      <p className="text-stone-300 leading-relaxed">
+      <p className="text-stone-200 text-sm leading-relaxed">
         You stroll down this smoother path, humming a little.{' '}
         {qualityList ? (
           <span className="text-stone-100">{qualityList}…</span>
@@ -44,7 +44,7 @@ export default function QualityDescriptionStep({ participant, onAdvance }: Props
         )}{' '}
         That about sums it up.
       </p>
-      <p className="text-stone-300 leading-relaxed">
+      <p className="text-stone-200 text-sm leading-relaxed">
         Other people might see it differently. But at least that&apos;s how you
         experience it. If you had to be more specific, you might say:
       </p>
